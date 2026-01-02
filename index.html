@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanush Infosec | Cybersecurity Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0369a1;
+            --secondary: #1e293b;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --code-bg: #1e1e1e;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--secondary);
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--gray-light);
+            color: var(--secondary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag-primary {
+            background-color: rgba(14, 165, 233, 0.1);
+            color: var(--primary-dark);
+        }
+
+        .tag-success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #047857;
+        }
+
+        .tag-warning {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #b45309;
+        }
+
+        .tag-danger {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #b91c1c;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #cbd5e1;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+        }
+
+        .badge i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+
+        /* Featured Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: var(--gray-light);
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .skill-item {
+            width: 50%;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: var(--gray-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Resume Section */
+        .resume-item {
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+            border-left: 3px solid var(--primary);
+            position: relative;
+        }
+
+        .resume-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+
+        .resume-date {
+            display: inline-block;
+            background-color: rgba(14, 165, 233, 0.1);
+            color: var(--primary-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--light);
+            border-radius: var(--radius);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-left: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            text-align: center;
+            width: 100%;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Blog Page */
+        .blog-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-post {
+            margin-bottom: 3rem;
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .blog-post-content {
+            padding: 2rem;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .blog-post-meta span {
+            margin-right: 1.5rem;
+        }
+
+        .blog-post-meta i {
+            margin-right: 0.5rem;
+        }
+
+        .code-block {
+            background-color: var(--code-bg);
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .skill-item {
+                width: 100%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin-top: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .footer-links li {
+                margin: 0.5rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">tanush<span>infosec</span>.in</div>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Cybersecurity Researcher</h1>
+            <p>Exploring vulnerabilities, securing digital landscapes, and sharing insights on the evolving world of information security. Welcome to my corner of the cyberspace.</p>
+            <a href="#blog" class="btn">Read My Blogs</a>
+            <a href="#resume" class="btn btn-outline" style="margin-left: 1rem;">View Resume</a>
+            
+            <div class="hero-badges">
+                <div class="badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Penetration Testing</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-code"></i>
+                    <span>Secure Coding</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-search"></i>
+                    <span>Vulnerability Research</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Threat Intelligence</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Cybersecurity Insights</h2>
+                <p>My recent writings on vulnerabilities, exploits, and security best practices.</p>
+            </div>
+            
+            <div class="featured-grid">
+                <!-- Blog Post 1 -->
+                <article class="card">
+                    <div class="card-img">
+                        <!-- Using a placeholder image with cybersecurity theme -->
+                        <div style="background-color: #0ea5e9; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> May 15, 2023</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h3>Zero-Day Vulnerabilities in Modern Web Applications</h3>
+                        <p>An analysis of recently discovered zero-day vulnerabilities affecting popular web frameworks and mitigation strategies for developers.</p>
+                        <div class="tags">
+                            <span class="tag tag-danger">Zero-Day</span>
+                            <span class="tag tag-primary">Web Security</span>
+                            <span class="tag">Vulnerability</span>
+                        </div>
+                        <a href="#post1" class="btn" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 2 -->
+                <article class="card">
+                    <div class="card-img">
+                        <div style="background-color: #10b981; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> April 28, 2023</span>
+                            <span><i class="far fa-clock"></i> 12 min read</span>
+                        </div>
+                        <h3>Advanced Phishing Techniques and Defense Mechanisms</h3>
+                        <p>Exploring the evolution of phishing attacks in 2023 and how organizations can implement multi-layered defenses against social engineering.</p>
+                        <div class="tags">
+                            <span class="tag tag-warning">Phishing</span>
+                            <span class="tag">Social Engineering</span>
+                            <span class="tag tag-success">Defense</span>
+                        </div>
+                        <a href="#post2" class="btn" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 3 -->
+                <article class="card">
+                    <div class="card-img">
+                        <div style="background-color: #8b5cf6; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> April 10, 2023</span>
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                        </div>
+                        <h3>Cloud Security Posture Management Best Practices</h3>
+                        <p>A comprehensive guide to securing cloud infrastructure across AWS, Azure, and GCP environments with practical CSPM implementation.</p>
+                        <div class="tags">
+                            <span class="tag tag-primary">Cloud Security</span>
+                            <span class="tag">CSPM</span>
+                            <span class="tag">Best Practices</span>
+                        </div>
+                        <a href="#post3" class="btn" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#all-blogs" class="btn">View All Blog Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Cybersecurity professional with 5+ years of experience in vulnerability research and penetration testing.</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Tanush - Cybersecurity Researcher</h2>
+                    <p>I'm a passionate cybersecurity researcher specializing in vulnerability assessment, penetration testing, and threat intelligence. My work focuses on identifying security flaws in software and networks before malicious actors can exploit them.</p>
+                    <p>With a strong background in both offensive and defensive security, I help organizations fortify their digital infrastructure against emerging threats. I regularly contribute to the security community through blogs, talks, and open-source tools.</p>
+                    
+                    <div class="skills">
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Penetration Testing</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Vulnerability Research</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Threat Intelligence</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Secure Code Review</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 88%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <!-- Placeholder for profile image -->
+                    <div class="profile-img" style="background: linear-gradient(135deg, #0ea5e9 0%, #0c4a6e 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 5rem;">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Experience</h2>
+                <p>My journey in cybersecurity and information security research.</p>
+            </div>
+            
+            <div class="resume-container">
+                <div class="resume-item">
+                    <span class="resume-date">2021 - Present</span>
+                    <h3>Senior Cybersecurity Researcher</h3>
+                    <h4>SecureNet Labs</h4>
+                    <p>Leading a team of security researchers in identifying critical vulnerabilities in enterprise software. Developed automated security testing tools that reduced vulnerability detection time by 40%.</p>
+                    <div class="tags">
+                        <span class="tag tag-primary">Vulnerability Research</span>
+                        <span class="tag tag-success">Team Leadership</span>
+                        <span class="tag">Penetration Testing</span>
+                    </div>
+                </div>
+                
+                <div class="resume-item">
+                    <span class="resume-date">2019 - 2021</span>
+                    <h3>Penetration Tester</h3>
+                    <h4>CyberShield Inc.</h4>
+                    <p>Conducted comprehensive penetration tests for Fortune 500 companies across various industries. Discovered and responsibly disclosed 50+ critical vulnerabilities with CVSS scores above 8.0.</p>
+                    <div class="tags">
+                        <span class="tag tag-danger">Penetration Testing</span>
+                        <span class="tag">Web Application Security</span>
+                        <span class="tag tag-warning">Network Security</span>
+                    </div>
+                </div>
+                
+                <div class="resume-item">
+                    <span class="resume-date">2017 - 2019</span>
+                    <h3>Security Analyst</h3>
+                    <h4>DataGuard Solutions</h4>
+                    <p>Monitored security events and incidents, performed threat hunting, and developed SIEM correlation rules. Reduced incident response time by 30% through automation of repetitive tasks.</p>
+                    <div class="tags">
+                        <span class="tag">Threat Hunting</span>
+                        <span class="tag tag-primary">SIEM</span>
+                        <span class="tag tag-success">Incident Response</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#full-resume" class="btn">Download Full Resume (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Interested in collaborating or discussing cybersecurity research? Feel free to reach out.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>contact@tanushinfosec.in</p>
+                    <a href="mailto:contact@tanushinfosec.in" class="btn" style="margin-top: 1rem;">Send Email</a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter</h3>
+                    <p>@tanush_infosec</p>
+                    <a href="https://twitter.com/tanush_infosec" target="_blank" class="btn btn-outline" style="margin-top: 1rem;">Follow</a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p>github.com/tanush-infosec</p>
+                    <a href="https://github.com/tanush-infosec" target="_blank" class="btn" style="margin-top: 1rem;">View Projects</a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>linkedin.com/in/tanush-infosec</p>
+                    <a href="https://linkedin.com/in/tanush-infosec" target="_blank" class="btn btn-outline" style="margin-top: 1rem;">Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: white;">tanush<span>infosec</span>.in</div>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Tanush Infosec. All rights reserved. | Cybersecurity Researcher & Blogger</p>
+                <p style="margin-top: 0.5rem;">This website is for educational and informational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sample Blog Post (Hidden until clicked) -->
+    <div id="post1" style="display: none;">
+        <section class="blog-header">
+            <div class="container">
+                <h1>Zero-Day Vulnerabilities in Modern Web Applications</h1>
+                <div class="blog-post-meta" style="justify-content: center; color: #cbd5e1;">
+                    <span><i class="far fa-calendar"></i> May 15, 2023</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                    <span><i class="fas fa-tags"></i> Zero-Day, Web Security, Vulnerability</span>
+                </div>
+            </div>
+        </section>
+        
+        <section style="padding: 4rem 0;">
+            <div class="blog-container">
+                <div class="blog-post-content">
+                    <h2>Introduction</h2>
+                    <p>Zero-day vulnerabilities represent one of the most significant threats in today's cybersecurity landscape. These are security flaws that are unknown to the software vendor and for which no patch exists, giving attackers the advantage of surprise.</p>
+                    
+                    <h2>Recent Case Studies</h2>
+                    <p>In the past quarter, we've observed a 30% increase in zero-day exploits targeting popular JavaScript frameworks like React and Vue.js. The common thread among these vulnerabilities is improper input validation that leads to remote code execution.</p>
+                    
+                    <h2>Code Example: Vulnerable Pattern</h2>
+                    <div class="code-block">
+// Vulnerable code - improper input validation<br>
+app.post('/api/user', (req, res) => {<br>
+&nbsp;&nbsp;const userInput = req.body.data;<br>
+&nbsp;&nbsp;// Dangerous eval usage with user input<br>
+&nbsp;&nbsp;eval(`processUserData(${userInput})`);<br>
+&nbsp;&nbsp;res.send('Data processed');<br>
+});
+                    </div>
+                    
+                    <h2>Mitigation Strategies</h2>
+                    <p>1. Implement strict input validation using allowlists rather than blocklists.</p>
+                    <p>2. Use prepared statements and parameterized queries for database operations.</p>
+                    <p>3. Regularly update dependencies and monitor security advisories for frameworks in use.</p>
+                    <p>4. Implement a Web Application Firewall (WAF) with custom rules for your application.</p>
+                    
+                    <h2>Conclusion</h2>
+                    <p>While zero-day vulnerabilities will always exist in complex software systems, adopting a defense-in-depth approach and following secure coding practices can significantly reduce the attack surface and impact of such vulnerabilities.</p>
+                    
+                    <div style="margin-top: 3rem; text-align: center;">
+                        <a href="#blog" class="btn">Back to Blogs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Simple blog post navigation
+        document.querySelectorAll('a[href^="#post"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const postId = this.getAttribute('href');
+                
+                // Hide all blog posts
+                document.querySelectorAll('div[id^="post"]').forEach(post => {
+                    post.style.display = 'none';
+                });
+                
+                // Hide main content
+                document.querySelectorAll('section:not(.blog-header)').forEach(section => {
+                    if (!section.classList.contains('blog-header')) {
+                        section.style.display = 'none';
+                    }
+                });
+                
+                document.querySelector('header').style.display = 'none';
+                document.querySelector('footer').style.display = 'none';
+                
+                // Show selected blog post
+                document.querySelector(postId).style.display = 'block';
+                
+                // Add a back button
+                if (!document.getElementById('back-to-blog')) {
+                    const backButton = document.createElement('a');
+                    backButton.id = 'back-to-blog';
+                    backButton.href = '#';
+                    backButton.className = 'btn';
+                    backButton.innerHTML = 'Back to Website';
+                    backButton.style.position = 'fixed';
+                    backButton.style.top = '20px';
+                    backButton.style.left = '20px';
+                    backButton.style.zIndex = '1001';
+                    
+                    backButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Show all content again
+                        document.querySelectorAll('section').forEach(section => {
+                            section.style.display = 'block';
+                        });
+                        
+                        document.querySelector('header').style.display = 'block';
+                        document.querySelector('footer').style.display = 'block';
+                        
+                        // Hide blog post
+                        document.querySelector(postId).style.display = 'none';
+                        
+                        // Remove back button
+                        this.remove();
+                        
+                        // Scroll to top
+                        window.scrollTo(0, 0);
+                    });
+                    
+                    document.body.appendChild(backButton);
+                }
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (anchor.getAttribute('href').startsWith('#post')) return;
+            
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
